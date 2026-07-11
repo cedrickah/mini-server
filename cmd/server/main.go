@@ -18,7 +18,21 @@ type Value struct {
 
 func main() {
 
-	conn := os.Getenv("DATABASE_URL")
+    host := os.Getenv("DATABASE_HOST")
+    port := os.Getenv("DATABASE_PORT")
+    user := os.Getenv("DATABASE_USER")
+    password := os.Getenv("DATABASE_PASSWORD")
+    dbname := os.Getenv("DATABASE_NAME")
+    
+    conn :=
+    fmt.Sprintf(
+        "host=%s port=%s user=%s password=%s dbname=%s sslmode=require",
+        host,
+        port,
+        user,
+        password,
+        dbname,
+    )
 
 	var err error
 
