@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+    "fmt"
 
 	_ "github.com/lib/pq"
 )
