@@ -44,14 +44,14 @@ jobs:
 
     - name: Tag image
       run: |
-        docker tag mini-server:latest \
-        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:latest
+        docker tag mini-server:${{ github.sha }} \
+        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }}
 
 
     - name: Push image
       run: |
         docker push \
-        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:latest
+        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }}
 
   deploy:
 
