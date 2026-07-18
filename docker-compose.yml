@@ -1,7 +1,7 @@
 services:
 
   api:
-    build: .
+    image: 665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:latest
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
