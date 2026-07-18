@@ -76,4 +76,4 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
 
         script: |
-          ~/deploy.sh $IMAGE_TAG
+          ~/deploy.sh ${{ github.sha }}
