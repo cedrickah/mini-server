@@ -41,7 +41,7 @@ jobs:
     - name: Build image
       run: |
         docker build \
-        -t minimal-server:$IMAGE_TAG .
+        -t mini-server:$IMAGE_TAG .
 
 
     - name: Tag image
