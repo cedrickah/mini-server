@@ -62,6 +62,7 @@ func main() {
 
 	http.HandleFunc("/write", writeHandler)
 	http.HandleFunc("/read", readHandler)
+    http.HandleFunc("/health", healthHandler)
 
 
 	log.Println("server listening on :8080")
@@ -118,4 +119,11 @@ func readHandler(w http.ResponseWriter,r *http.Request){
 	json.NewEncoder(w).Encode(
 		Value{Value:value},
 	)
+} 
+
+func healthHandler(w http.ResponseWriter,r *http.Request){
+
+    w.WriteHeader(http.StatusOK)
+
+    w.Write([]byte(`{"status":"ok"}`))
 } 
