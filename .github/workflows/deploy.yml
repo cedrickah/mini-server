@@ -39,7 +39,7 @@ jobs:
     - name: Build image
       run: |
         docker build \
-        -t mini-server .
+        -t 665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }} .
 
 
     - name: Tag image
@@ -52,6 +52,10 @@ jobs:
       run: |
         docker push \
         665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }}
+        
+    - name: Save image tag
+      run: |
+        echo "${{ github.sha }}" > image-tag.txt
 
   deploy:
 
