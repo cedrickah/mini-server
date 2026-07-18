@@ -100,19 +100,19 @@ func writeHandler(w http.ResponseWriter, r *http.Request){
 
 func readHandler(w http.ResponseWriter,r *http.Request){
 
-	// row := db.QueryRow(
-	// 	"SELECT value FROM values_table ORDER BY id DESC LIMIT 1",
-	// )
+	row := db.QueryRow(
+		"SELECT value FROM values_table ORDER BY id DESC LIMIT 1",
+	)
 
 
-	var value string = "Hello world!"
+	var value string
 
-	// err := row.Scan(&value)
+	err := row.Scan(&value)
 
-	// if err != nil {
-	// 	http.Error(w,err.Error(),500)
-	// 	return
-	// }
+	if err != nil {
+		http.Error(w,err.Error(),500)
+		return
+	}
 
 
 	json.NewEncoder(w).Encode(
