@@ -1,7 +1,7 @@
 services:
 
   api:
-    image: 665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:latest
+    image: 665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${IMAGE_TAG}
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}

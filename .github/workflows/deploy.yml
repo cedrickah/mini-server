@@ -11,6 +11,8 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
 
@@ -39,23 +41,19 @@ jobs:
     - name: Build image
       run: |
         docker build \
-        -t 665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }} .
+        -t minimal-server:$IMAGE_TAG .
 
 
     - name: Tag image
       run: |
-        docker tag mini-server:${{ github.sha }} \
-        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }}
+        docker tag mini-server:$IMAGE_TAG \
+        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:$IMAGE_TAG
 
 
     - name: Push image
       run: |
         docker push \
-        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:${{ github.sha }}
-        
-    - name: Save image tag
-      run: |
-        echo "${{ github.sha }}" > image-tag.txt
+        665146707658.dkr.ecr.eu-north-1.amazonaws.com/mini-server:$IMAGE_TAG
 
   deploy:
 
@@ -78,4 +76,4 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
 
         script: |
-          ~/deploy.sh
+          ~/deploy.sh $IMAGE_TAG
